@@ -18,5 +18,7 @@ results data.frame with lag assessment results
 Time lag detection
 }
 \examples{
-runlag(x,y)
+\dontrun{
+ runlag(x,y)
+}
 }
