@@ -7,13 +7,16 @@
 runlag(x, y)
 }
 \arguments{
-\item{x}{}
+\item{x}{data.frame with cumulative record counts per year}
 
-\item{y}{}
+\item{y}{data.frame with occurence records per species and year}
 }
 \value{
 results data.frame with lag assessment results
 }
 \description{
 Time lag detection
+}
+\examples{
+runlag(x,y)
 }
