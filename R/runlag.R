@@ -16,7 +16,7 @@ runlag <- function(x,y)
     # that the frequency may *decrease* after the lag phase # So also track
     # which species increase
     z <- sort(unique(paste(x$Species)))
-    species <- substring(z, 15, 120)
+    species <- substring(z, 1, 120)
     nspecies <- length(z)
     endlagphase <- increase <- lengthlag <- firstyear <- rep(NA, nspecies)
     endlagphase0 <- increase0 <- lengthlag0 <- firstyear0 <- rep(NA, nspecies)

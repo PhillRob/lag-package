@@ -1,4 +1,4 @@
-#' Time series data of NZ naturalised plants
+#' Time series data of NZ (north island) naturalised plants
 #'
 #' @source Aikio et al. \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0706.2009.17963.x}
 #' @format A data frame with columns:
@@ -15,7 +15,7 @@
 #' }
 "TimeSeriesPlantNZ"
 
-#' Annual frequency count of NZ naturalised plants
+#' Annual frequency count of NZ (north island) naturalised plants
 #'
 #' @source Aikio et al. \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0706.2009.17963.x}
 #' @format A data frame with columns:
@@ -25,7 +25,7 @@
 #' }
 #' @examples
 #' \dontrun{
-#'  AnnualFrequencyNatPlantNZ
+#'  AnnualFrequencyNatPlantNZN
 #' }
 "y"
 

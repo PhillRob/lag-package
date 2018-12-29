@@ -1,4 +1,4 @@
-Package: LagTimeDetection
+Package: lagv0
 Title: Fit splines on species time series for lag time detection
 Version: 0.0.0.9000
 Authors@R: person("P", "R", email = "phill@gmx.li", role = c("aut", "cre"))
