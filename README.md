@@ -1,6 +1,6 @@
-# lagv0
+# lag package
 
-The goal of lagv0 is to ...
+The lag packages detects lag existence and length of 
 
 ## Installation
 

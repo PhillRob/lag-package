@@ -1,10 +1,10 @@
-#' Time lag detection
+#' Time lag detection in occurence data
 #'
 #' @param x data.frame with cumulative record counts per year
 #' @param y data.frame with occurence records per species and year
 #'
 #' @return results data.frame with lag assessment results
-#' @export
+#' @export runlag
 #'
 #' @examples
 #' \dontrun{
@@ -42,4 +42,5 @@ runlag <- function(x,y)
     }
     results <- as.data.frame(cbind(island, species, firstyear, increase0, lengthlag0, endlagphase0,
                                  increase, endlagphase, lengthlag))
+    return(results)
 }

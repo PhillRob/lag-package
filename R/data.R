@@ -11,9 +11,9 @@
 #' }
 #' @examples
 #' \dontrun{
-#'  x
+#'  TimeSeriesNatPlantNZ
 #' }
-"x"
+"TimeSeriesPlantNZ"
 
 #' Annual frequency count of NZ naturalised plants
 #'
@@ -25,7 +25,7 @@
 #' }
 #' @examples
 #' \dontrun{
-#'  y
+#'  AnnualFrequencyNatPlantNZ
 #' }
 "y"
 
