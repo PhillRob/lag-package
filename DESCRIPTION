@@ -1,7 +1,7 @@
-Package: lagv0
-Title: Fit splines for lag detection based on occurence data
+Package: LagTimeDetection
+Title: Fit splines on species time series for lag time detection
 Version: 0.0.0.9000
-Authors@R: person("P", "R", email = "phill@example.com", role = c("aut", "cre"))
+Authors@R: person("P", "R", email = "phill@gmx.li", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.5.1)
 License: GPL-3 + file LICENSE
