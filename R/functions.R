@@ -1,10 +1,10 @@
 # Extract frequency data for given island and species from data
 # If zeros=TRUE, include zeros in returned data
 
-get.species <- function(x, y, island, species, zeros=FALSE)
+get.species <- function(x, y, species, zeros=FALSE)
 {
-  out <- subset(x, x[,1]==island & x[,2]==species)
-  out <- out[,c(3,4,6)]
+  out <- subset(x, x[,1]==species)
+  out <- out[,c(2,3,5)]
   colnames(out) <- c("year","frequency","specimens")
   if(zeros)
   {
@@ -22,7 +22,7 @@ get.species <- function(x, y, island, species, zeros=FALSE)
   #out$frequency[out$specimens==0] <- NA
   out <- as.list(out)
   out$species <- species
-  out$island <- island
+  # out$island <- island
   return(out)
 }
 
@@ -39,16 +39,16 @@ lagphase <- function(data, knots=NULL, order=1, gam=FALSE)
   # Set zeros to missing if no specimens
   nospec <- data$specimens==0
   data$frequency[nospec] <- NA
-  
+
   # Fit gam
   if(gam)
   {
     gamfit <- gam(frequency ~ s(year), offset=log(specimens), data=data, family=poisson)
     gamfit$year <- data$year
-    gamfit$name <- paste(data$island,"island:",data$species)
+    gamfit$name <- paste(data$species)
     return(gamfit)
   }
-  
+
   # Otherwise fit a glm
   # Check if knots==0 meaning no knots to be included
   if(!is.null(knots))
@@ -69,8 +69,8 @@ lagphase <- function(data, knots=NULL, order=1, gam=FALSE)
       }
     }
   }
-  
-  # Otherwise proceed 
+
+  # Otherwise proceed
   # Choose order if not provided
   if(is.null(order))
   {
@@ -81,25 +81,25 @@ lagphase <- function(data, knots=NULL, order=1, gam=FALSE)
     bestfit <- fit1
     if(AICc(fit3) < AICc(bestfit))
       bestfit <- fit3
-    return(bestfit)    
+    return(bestfit)
   }
   # Otherwise proceed with specified order
   if(!is.null(knots))
     return(lagphase.knots(knots, data, order))
   # Otherwise order specified but knots unspecified
-  
+
   # Choose some initial knots
   knots <- quantile(data$year,prob=c(0.2,0.4,0.6,0.8))
   names(knots) <- NULL
-  
+
   # Fit best 4, 3, 2, 1 and 0 knot models
   fit4 <- optim(knots, tryknots, data=data, order=order)
   fit3 <- optim(knots[2:4], tryknots, data=data, order=order)
   fit2 <- optim(knots[c(2,4)], tryknots, data=data, order=order)
-  fit1 <- optim(knots[2], tryknots, data=data, order=order, method="Brent", 
+  fit1 <- optim(knots[2], tryknots, data=data, order=order, method="Brent",
                 lower=min(data$year), upper=max(data$year))
   fit0 <- glm(frequency ~ 1, offset=log(specimens), family=poisson, data=data, na.action=na.omit)
-  
+
   # Find best of these models:
   bestfit <- fit4
   if(fit3$value < bestfit$value)
@@ -141,7 +141,7 @@ lagphase.knots <- function(knots, data, order)
   if(!is.null(data$island))
     fit$name <- paste(data$island,"island:",data$species)
   else
-    fit$name <- deparse(substitute(data))    
+    fit$name <- deparse(substitute(data))
   fit$data <- data
   return(fit)
 }
@@ -176,10 +176,10 @@ AICc <- function(object)
   k <- length(object$coefficients)
   n <- object$df.residual+k
   aicc <- aic + 2*k*(k+1)/(n-k-1)
-  return(aicc)  
+  return(aicc)
 }
-  
-# Produces plot of the fitted spline function after adjusting for 
+
+# Produces plot of the fitted spline function after adjusting for
 # number of specimens
 
 lagphaseplot <- function(fit,ylim=NULL,xlab="Year", ylab="Adjusted frequency", main=fit$name,...)
@@ -203,8 +203,8 @@ lagphaseplot <- function(fit,ylim=NULL,xlab="Year", ylab="Adjusted frequency", m
 }
 
 
-freqplot <- function(fit1, fit2=NULL, fit3=NULL, fit4=NULL, 
-                    xlab="Year", ylab="Frequency", main=fit1$name, cols=2:5, ...)
+freqplot <- function(fit1, fit2=NULL, fit3=NULL, fit4=NULL,
+                     xlab="Year", ylab="Frequency", main=fit1$name, cols=2:5, ...)
 {
   if(is.element("data",names(fit1)))
     data <- fit1$data
@@ -213,8 +213,8 @@ freqplot <- function(fit1, fit2=NULL, fit3=NULL, fit4=NULL,
     data <- fit1
     fit1 <- NULL
   }
-  
-  plot(frequency ~ year, data=data, xlab=xlab, ylab=ylab, main=main, 
+
+  plot(frequency ~ year, data=data, xlab=xlab, ylab=ylab, main=main,
        ylim=range(0,data$frequency,na.rm=TRUE),...)
   j <- (data$specimens > 0)
   if(!is.null(fit1))

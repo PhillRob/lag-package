@@ -15,18 +15,19 @@ runlag <- function(x,y)
     # # Now apply to all species and record the end of lag phase # Note
     # that the frequency may *decrease* after the lag phase # So also track
     # which species increase
-    z <- sort(unique(paste(x$Island, "Island:", x$Species)))
-    island <- substring(z, 1, 5)
-    species <- substring(z, 15, 100)
+    z <- sort(unique(paste(x$Species)))
+    species <- substring(z, 15, 120)
     nspecies <- length(z)
     endlagphase <- increase <- lengthlag <- firstyear <- rep(NA, nspecies)
     endlagphase0 <- increase0 <- lengthlag0 <- firstyear0 <- rep(NA, nspecies)
 
     for (i in 1:nspecies) {
-        subdata <- get.species(x, y, island[i], species[i], zeros = TRUE)
+
+        subdata <- get.species(x, y, species[i], zeros = TRUE)
         fit0 <- lagphase(subdata)
-        subdata <- get.species(x, y, island[i], species[i], zeros = FALSE)
+        subdata <- get.species(x, y, species[i], zeros = FALSE)
         fit <- lagphase(subdata)
+
         if (length(fit$knots) > 0) {
             endlagphase[i] <- fit$knots[1]
             increase[i] <- (fit$coef[2] > 0)
@@ -40,7 +41,8 @@ runlag <- function(x,y)
             lengthlag0[i] <- fit0$knots[1] - fit0$data$year[1]
         }
     }
-    results <- as.data.frame(cbind(island, species, firstyear, increase0, lengthlag0, endlagphase0,
+
+    results <- as.data.frame(cbind(species, firstyear, increase0, lengthlag0, endlagphase0,
                                  increase, endlagphase, lengthlag))
     return(results)
 }
