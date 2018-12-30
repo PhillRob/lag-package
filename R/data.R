@@ -1,4 +1,4 @@
-#' Time series data of NZ (north island) naturalised plants
+#' Time series data of NZN (north island) naturalised plants
 #'
 #' @source Aikio et al. \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0706.2009.17963.x}
 #' @format A data frame with columns:
@@ -11,9 +11,9 @@
 #' }
 #' @examples
 #' \dontrun{
-#'  TimeSeriesNatPlantNZ
+#'  TimeSeriesNatPlantNZN
 #' }
-"TimeSeriesPlantNZ"
+"TimeSeriesPlantNZN"
 
 #' Annual frequency count of NZ (north island) naturalised plants
 #'
@@ -21,12 +21,12 @@
 #' @format A data frame with columns:
 #' \describe{
 #'  \item{Year}{Year of records.}
-#'  \item{No_speciemen}{Number of species recorded per year. }
+#'  \item{No_speciemen}{Number of species recorded per year.}
 #' }
 #' @examples
 #' \dontrun{
-#'  AnnualFrequencyNatPlantNZN
+#'  AnnualFrequencyNatPlantNZ
 #' }
-"y"
+"AnnualFrequencyNatPlantNZ"
 
 
