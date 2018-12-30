@@ -72,7 +72,6 @@ gbifwrangler <- function(x, year=2017, minocc = 15, noyears=5){
   colnames(x.freq.5) <-
     c("Species", "Year", "COUNT", "CUM_FREQ", "No_specimen_year")
   timeseries <- x.freq.5[order(x.freq.5$Species, x.freq.5$Year),]
-  return(timeseries)
 
   # annual frequency counts (survey effort)
   x.freq.6 <-
@@ -83,5 +82,6 @@ gbifwrangler <- function(x, year=2017, minocc = 15, noyears=5){
   x.freq.7$Fre[is.na(x.freq.7$Fre)] <- 0
   colnames(x.freq.7) <- c("Year", "No_speciemen")
   frequency <- x.freq.7
-  return(frequency)
+
+  output=list(timeseries,frequency)
 }

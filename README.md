@@ -8,15 +8,11 @@ bibliography: bibliography.bib
 csl: apa-5th.csl
 ---
 
-
-
-This package fits glms over species time series to detect time lag in species population growth. The code is based on @Hyndman2015-rt and the code published on [www.robjhyndman.com](https://robjhyndman.com/Rfiles/lagphase.R).
-
-
+This package fits glms over species time series to detect time lag in species population growth. The code is based on @Hyndman2015-rt and has been published on [www.robjhyndman.com](https://robjhyndman.com/Rfiles/lagphase.R).
 
 
 ## Installation
-You can install the lag detection package from github with:
+You can install the lag phase detection package from github with:
 
 ``` r
 # install.packages("devtools")
