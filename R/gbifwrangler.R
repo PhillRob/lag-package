@@ -17,8 +17,7 @@
 #'
 
 gbifwrangler <- function(x, year=2017, minocc = 15, noyears=5){
-  if (!require(plyr)) install.packages('plyr')
-  library(plyr)
+
   #x<-MDG
   # filter data
   x <- x[!is.na(x$year),] # remove all records without time stamp
@@ -39,7 +38,7 @@ gbifwrangler <- function(x, year=2017, minocc = 15, noyears=5){
     x.noyears <-
       by(x, x$name, function(x)
         (nrow(count(x[, c("year")])) < noyears) == T)
-    x.noyears <- ldply(x.noyears, data.frame)
+    x.noyears <- plyr::ldply(x.noyears, data.frame)
     x.noyears <- x.noyears[(x.noyears$X..i.. == TRUE), 1]
     x <- x[!(x$name %in% x.noyears),]
   } else {

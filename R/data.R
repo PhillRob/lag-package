@@ -3,7 +3,6 @@
 #' @source Aikio et al. \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0706.2009.17963.x}
 #' @format A data frame with columns:
 #' \describe{
-#'  \item{Island}{String to separate regions. Lag detection is run separatly in the Islands/regions.}
 #'  \item{Species}{String to separate species.}
 #'  \item{Year}{Year of records.}
 #'  \item{COUNT}{Number of species recorded per year. }
@@ -13,7 +12,7 @@
 #' \dontrun{
 #'  TimeSeriesNatPlantNZN
 #' }
-"TimeSeriesPlantNZN"
+"TimeSeriesNatPlantNZN"
 
 #' Annual frequency count of NZ (north island) naturalised plants
 #'
