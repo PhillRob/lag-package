@@ -2,7 +2,7 @@
 % Please edit documentation in R/runlag.R
 \name{runlag}
 \alias{runlag}
-\title{Time lag detection}
+\title{Time lag detection in occurence data}
 \usage{
 runlag(x, y)
 }
@@ -15,7 +15,7 @@ runlag(x, y)
 results data.frame with lag assessment results
 }
 \description{
-Time lag detection
+Time lag detection in occurence data
 }
 \examples{
 \dontrun{
