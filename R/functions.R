@@ -1,5 +1,13 @@
-# Extract frequency data for given island and species from data
-# If zeros=TRUE, include zeros in returned data
+#' get species from time series objects
+#'
+#' @param x data.frame with cumulative record counts per year
+#' @param y data.frame with occurence records per species and year
+#' @param species #vector of species or other time series objects
+#' @param zeros binomimal if to treat missing data as 0. If zeros=TRUE, include zeros in returned data.
+#' @return results data.frame with species
+#' @export get.species
+
+
 
 get.species <- function(x, y, species, zeros=FALSE)
 {
@@ -26,20 +34,25 @@ get.species <- function(x, y, species, zeros=FALSE)
   return(out)
 }
 
-# Main function. Give it a set of data where the columns include
-#  year
-#  frequency
-#  specimens
-# It will find appropriate knots if not specified
-# It will choose an appropriate order if not specified
-# Just don't give it knots but no order
-# If gam=TRUE, it will return a gam model instead.
+#' Main function fitting glms to detect get end of constant population growth.
+#' Give it a set of data where the columns include year, frequency, specimens
+#' It will find appropriate knots if not specified. It will choose an appropriate
+#' order if not specified. Just don't give it knots but no order
+#' If gam=TRUE, it will return a gam model instead.
+#'
+#' @param data data.frame
+#' @param knots the numbr of nots
+#' @param order the order of the knots
+#' @param gam If gam=TRUE, it will return a gam model instead
+#' @return results data.frame with species
+#' @export lagphase
+
 lagphase <- function(data, knots=NULL, order=1, gam=FALSE)
 {
   # Set zeros to missing if no specimens
   nospec <- data$specimens==0
   data$frequency[nospec] <- NA
-
+  specimens <- data$specimens
   # Fit gam
   if(gam)
   {
@@ -124,10 +137,17 @@ lagphase <- function(data, knots=NULL, order=1, gam=FALSE)
 }
 
 
-# Fit model with lag phase followed by growth
-# where knots and order are specified
+#' Function model with lag phase followed by growth where knots and order are specified
+#'
+#' @param data data.frame
+#' @param knots the numbr of nots
+#' @param order the order of the knots
+#' @return results data.frame with species
+#' @export lagphase.knots
+
 lagphase.knots <- function(knots, data, order)
 {
+  specimens <- data$specimens
   x <- matrix(NA,ncol=length(knots),nrow=length(data$year))
   #x[,1] <- as.numeric(data$year < knots[1])
   for(i in 1:length(knots))
@@ -146,9 +166,15 @@ lagphase.knots <- function(knots, data, order)
   return(fit)
 }
 
-# Check that the specified knots make sense.
-# Then use lagphase.knots to fit the model
-# Returns AIC of fitted model
+#' Function that checks that the specified knots make sense then use lagphase.knots
+#' to fit the model and returns AIC of fitted model
+#'
+#' @param data data.frame
+#' @param knots the numbr of nots
+#' @param order the order of the knots
+#' @return AIC of fitted model
+#' @export tryknots
+
 tryknots <- function(knots, data, order)
 {
   # Knots must be interior to the data
@@ -169,6 +195,12 @@ tryknots <- function(knots, data, order)
   return(AICc(fit))
 }
 
+#' Function to return corrected AIC from a fitted object
+#'
+#' @param object model object
+#' @return AICc
+#' @export AICc
+
 # Function to return corrected AIC from a fitted object
 AICc <- function(object)
 {
@@ -179,10 +211,19 @@ AICc <- function(object)
   return(aicc)
 }
 
-# Produces plot of the fitted spline function after adjusting for
-# number of specimens
 
-lagphaseplot <- function(fit,ylim=NULL,xlab="Year", ylab="Adjusted frequency", main=fit$name,...)
+#' Function to plot the fitted spline function after adjusting for number of specimens (records)
+#'
+#' @param fit the model fit
+#' @param ylim limit of y axis
+#' @param xlab x lable
+#' @param ylab y lable
+#' @param ... further arguments to be passed to the predict funtion
+#' @param main the title
+#' @return plot
+#' @export lagphaseplot
+
+lagphaseplot <- function(fit,ylim=NULL,xlab="Year", ylab="Adjusted frequency", main=fit$name, ...)
 {
   fits <- predict(fit, se.fit=TRUE)
   #specimens <- model.matrix(fit)[,"specimens"]
@@ -202,6 +243,19 @@ lagphaseplot <- function(fit,ylim=NULL,xlab="Year", ylab="Adjusted frequency", m
   rug(fit$year[fit$data$frequency > 0])
 }
 
+
+#' Function to plot the frequency
+#' @param fit1 the model fit1
+#' @param fit2 the model fit2
+#' @param fit3 the model fit3
+#' @param fit4 the model fit4
+#' @param xlab x lable
+#' @param ylab y lable
+#' @param ... further arguments to be passed to the predict funtion
+#' @param main the title
+#' @param cols numberof columns
+#' @return plot
+#' @export freqplot
 
 freqplot <- function(fit1, fit2=NULL, fit3=NULL, fit4=NULL,
                      xlab="Year", ylab="Frequency", main=fit1$name, cols=2:5, ...)
@@ -227,7 +281,13 @@ freqplot <- function(fit1, fit2=NULL, fit3=NULL, fit4=NULL,
     lines(data$year[j],fitted(fit4),col=cols[4])
 }
 
-# Fit piecewise linear model
+#' Fit piecewise linear model
+#'
+#' @param x time series object
+#' @param y frequency counts
+#' @return results
+#' @export pwlm
+
 pwlm <- function(x,y)
 {
   # choose knot

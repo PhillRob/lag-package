@@ -1,4 +1,12 @@
+AICc.Rd
 AnnualFrequencyNatPlantNZ.Rd
 TimeSeriesNatPlantNZN.Rd
+freqplot.Rd
 gbifwrangler.Rd
+get.species.Rd
+lagphase.Rd
+lagphase.knots.Rd
+lagphaseplot.Rd
+pwlm.Rd
 runlag.Rd
+tryknots.Rd

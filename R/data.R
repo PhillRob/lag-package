@@ -29,3 +29,16 @@
 "AnnualFrequencyNatPlantNZ"
 
 
+#' GBIF raw data obtained via rgbif
+#'
+#' @source gbif.org \url{https://gbif.org}
+#' @format A data frame with columns
+#' \describe{
+#'  \item{Year}{Year of records.}
+#'  \item{No_speciemen}{Number of species recorded per year.}
+#' }
+#' @examples
+#' \dontrun{
+#'  GBIFraw
+#' }
+"GBIFraw"

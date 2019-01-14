@@ -8,10 +8,8 @@
 #' @return timeseries data.frame for use as x in lag test
 #' @return frequency data.frame for use as y in lag test
 #' @export gbifwrangler
-#'
-#' @examples
-#' \dontrun{
-#'  gbifwrangler(x, year=2017, minocc = 15, noyears=5)
+#' @examples{
+#'  gbifwrangler(GBIFraw, year=2017, minocc = 15, noyears=5)
 #' }
 #'
 #'
@@ -31,18 +29,18 @@ gbifwrangler <- function(x, year=2017, minocc = 15, noyears=5){
   if (minocc >= 1) {
     x <- subset(x, with(x, unsplit(table(name), name)) >= minocc)
   } else {
-    stop("minoc must be larger or equal to 1")
+    stop("minocc parameter must be larger or equal to 1")
   }
 
   if (noyears > 0) {
     x.noyears <-
       by(x, x$name, function(x)
-        (nrow(count(x[, c("year")])) < noyears) == T)
+        (nrow(plyr::count(x[, c("year")])) < noyears) == T)
     x.noyears <- plyr::ldply(x.noyears, data.frame)
     x.noyears <- x.noyears[(x.noyears$X..i.. == TRUE), 1]
     x <- x[!(x$name %in% x.noyears),]
   } else {
-    continue
+    stop("noyears parameter is <= 0")
   }
 
   x <- x[c("name", "year")]
