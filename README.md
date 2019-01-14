@@ -4,8 +4,8 @@ output:
   pdf_document: default
   html_document: default
   word_document: default
-bibliography: bibliography.bib
-#csl: apa-5th.csl
+bibliography: man/bibliography.bib
+csl: man/apa-5th.csl
 ---
 
 This package fits glms over species time series to detect a stagnant growth rate (lag phase) in species populations. The code is based on @Hyndman2015-rt and has been published on [www.robjhyndman.com](https://robjhyndman.com/Rfiles/lagphase.R).
