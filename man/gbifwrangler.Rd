@@ -24,8 +24,8 @@ frequency data.frame for use as y in lag test
 Prepare GBIF data for lag test
 }
 \examples{
-\dontrun{
- gbifwrangler(x, year=2017, minocc = 15, noyears=5)
+{
+ gbifwrangler(GBIFraw, year=2017, minocc = 15, noyears=5)
 }
 
 
