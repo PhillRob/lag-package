@@ -10,3 +10,6 @@ export(lagphaseplot)
 export(pwlm)
 export(runlag)
 export(tryknots)
+importFrom("graphics", "abline", "lines", "plot", "polygon", "rug")
+importFrom("stats", "aggregate", "fitted", "glm", "lm", "na.omit",
+             "optim", "poisson", "predict", "quantile", "residuals")

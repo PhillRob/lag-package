@@ -2,7 +2,9 @@ Package: LagDetection
 Title: Lag Times in Species Population Growth
 Version: 0.1.0.0
 Authors@R: person("Philipp", "Robeck", email = "phill@gmx.li", role = c("aut", "cre"))
-Description: Fit splines on species time series to detect delays in population growth. Aikio, Sami and Duncan, Richard P and Hulme, Philip E () <doi:10.1111/j.1600-0706.2009.17963.x>
+Description: 
+    Fit splines on species time series to detect delays in population growth. 
+    Hyndman, R J and Mesgaran, M B and Cousens, R D (2015) <doi:10.1007/s10530-015-0962-8>.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8

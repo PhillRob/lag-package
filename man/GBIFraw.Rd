@@ -6,8 +6,22 @@
 \title{GBIF raw data obtained via rgbif}
 \format{A data frame with columns
 \describe{
- \item{Year}{Year of records.}
- \item{No_speciemen}{Number of species recorded per year.}
+ \item{.id}{ID}
+ \item{name}{name}
+ \item{key}{key}
+ \item{basisOfRecord}{basisOfRecord}
+ \item{year}{year}
+ \item{month}{month}
+ \item{day}{day}
+ \item{issues}{issues}
+ \item{countryCode}{countryCode}
+ \item{gbifID}{gbifID}
+ \item{verbatimLocality}{verbatimLocality}
+ \item{occurrenceID}{occurrenceID}
+ \item{coordinateUncertaintyInMeters}{coordinateUncertaintyInMeters}
+ \item{continent}{continent}
+ \item{stateProvince}{stateProvince}
+ \item{coordinatePrecision}{coordinatePrecision}
 }}
 \source{
 gbif.org \url{https://gbif.org}
