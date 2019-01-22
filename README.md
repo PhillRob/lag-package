@@ -36,6 +36,7 @@ load("data/TimeSeriesNatPlantNZN.rda")
 ```
 ### GBIF wrangler
 You can use `gbifwranger.R` to wrap [GBIF](https://www.gbif.org/) data downloaded using the [rgbif package](https://CRAN.R-project.org/package=rgbif) by @Scott_Chamberlain_Vijay_Barve_Dan_Mcglinn_Damiano_Oldoni_Laurens_Geffert_Karthik_Ram2018-zi into the format required by the lag code. 
+
 ``` r
 # get gbif occurences
 if (!require(rgbif)) install.packages('rgbif')
