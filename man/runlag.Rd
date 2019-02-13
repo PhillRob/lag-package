@@ -18,7 +18,9 @@ results data.frame with lag assessment results
 Time lag detection in occurence data
 }
 \examples{
- data <- gbifwrangler(GBIFraw, year=2017, minocc = 15, noyears=5)
- runlag(data[[1]],data[[2]])
+\dontrun{
+data <- gbifwrangler(GBIFraw, year=2017, minocc = 15, noyears=5)
+runlag(data[[1]],data[[2]])
+}
 
 }

@@ -7,10 +7,11 @@
 #' @export runlag
 #'
 #' @examples
-#'  data <- gbifwrangler(GBIFraw, year=2017, minocc = 15, noyears=5)
-#'  \dontrun{
-#'  runlag(data[[1]],data[[2]])
-#'}
+#' \dontrun{
+#' data <- gbifwrangler(GBIFraw, year=2017, minocc = 15, noyears=5)
+#' runlag(data[[1]],data[[2]])
+#' }
+#'
 runlag <- function(x,y)
 {
     # # Now apply to all species and record the end of lag phase # Note
